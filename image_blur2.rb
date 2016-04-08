@@ -1,7 +1,3 @@
-
-# Build a class that allows us to build a new image with the data we specify. 
-# Make it possible for the class to output the image to the screen. 
-
 class Image
 
   def initialize(array)
@@ -9,23 +5,25 @@ class Image
   end
 
   def output_image
-    # loop through the argument array to access each row
     @array.each do |row|
-      # transform from array to string and display row
       puts row.join
     end
   end
 
-######### I am having difficulty accessing the index values in the array ##########
-  def find_one
-    #l oop through the argument array to access each row
-    @array.each do |row|
-      # loop through each row to access each index
-      row.each do |i|
-        # print value
-        puts i
+  def blur
+    @new_array = Marshal.load(Marshal.dump(@array))
+    @array.each_with_index do |row, row_number| 
+      row.each_with_index do |element, index| 
+        # [row_number, index, element]
+        if element == 1
+          @new_array[row_number][index - 1] = 1
+          @new_array[row_number][index + 1] = 1
+          @new_array[row_number - 1][index] = 1
+          @new_array[row_number + 1][index] = 1
+        end
       end
     end
+    Image.new(@new_array)
   end
 end
 
@@ -36,6 +34,8 @@ image = Image.new([
   [0, 0, 0, 0],
   [0, 0, 0, 0]
 ])
+p image.output_image
+blurred_image = image.blur.output_image
+p blurred_image
 
-image.find_one
 

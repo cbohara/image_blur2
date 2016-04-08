@@ -14,10 +14,10 @@
 
 # nthterm is the function
 def nthterm(first, n, c)
-  array = []
-  array[0] = first
-  1.upto(10) do |i|
-    array << array[i] + c
+  array = []  # [ ]
+  array[0] = first # [1]
+  1.upto(10) do |i|      # i = 1
+    array << array[i - 1] + c 
   end
   return array
 end

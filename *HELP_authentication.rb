@@ -12,6 +12,8 @@
 # Otherwise it should return false.
 
 class Sleigh
+  attr_reader :input_name, :input_password
+  
   def initialize(input_name, input_password)
     @input_name = input_name
     @input_password = input_password
@@ -26,7 +28,7 @@ end
 # why do I need to input parameters for both building object and 
 # calling method on object
 sleigh = Sleigh.new("Santa Claus","Ho Ho Ho!")
-p sleigh.authenticate("Santa Claus","Ho Ho Ho!")
+p sleigh.authenticate
 
 sleigh2 = Sleigh.new("NO","Ho Ho Ho!")
 p sleigh2.authenticate("NO","Ho Ho Ho!")
