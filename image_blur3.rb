@@ -23,11 +23,10 @@ class Image
   end
 
   def blur!
-    ones = find_ones
+    ones = find_ones 
     @array.each_with_index do |row, row_number| 
       row.each_with_index do |element, index| 
-        ones.each do |one_row_number, one_index|
-
+        ones.each do |one_row_number, one_index| 
           if row_number == one_row_number && index == one_index
             @array[row_number][index - 1] = 1 unless index == 0
             @array[row_number][index + 1] = 1 unless (index + 1) >= row.length  
@@ -39,9 +38,9 @@ class Image
     end
   end
 
-  def blur_distance(distance)
-    distance.times do
-      blur!
+  def blur_distance(distance) 
+    distance.times do 
+      blur!           
     end
   end
 
@@ -50,12 +49,12 @@ end
 image = Image.new([
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 1, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 1]
+  [0, 0, 0, 0, 0, 0, 0, 0]
 ])
 p 'original'
 image.output_image
